@@ -1,0 +1,24 @@
+{
+  "name": "simple_nodejsservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pranavv2006/Simple_nodejsService.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pranavv2006/Simple_nodejsService/issues"
+  },
+  "homepage": "https://github.com/Pranavv2006/Simple_nodejsService#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
