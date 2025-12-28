@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: [ "main", "staging" ] 
   pull_request:
     branches: [ "main" ]
 
@@ -26,8 +26,7 @@ jobs:
 
   deploy-staging:
     needs: build-and-test
-    # This runs on pull requests to main OR pushes to the develop branch
-    if: github.ref == 'refs/heads/develop' || github.event_name == 'pull_request'
+    if: github.ref == 'refs/heads/staging' || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Render Staging
@@ -35,7 +34,7 @@ jobs:
 
   deploy-production:
     needs: build-and-test
-    # This runs ONLY when code is pushed/merged into main
+    # Triggers only when code is merged/pushed to main
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
@@ -49,6 +48,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          # Explicitly setting the file name to avoid any case-sensitivity issues
+          file: ./Dockerfile 
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/my-node-app:latest
           
