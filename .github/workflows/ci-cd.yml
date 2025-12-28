@@ -44,7 +44,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Debug: List repository files
+      - name: Debug:List repository files
         run: |
           echo "Working directory:"
           pwd
@@ -53,13 +53,12 @@ jobs:
           echo "All files recursively:"
           ls -R .
 
-            
       - name: Build & Push Docker Image
         uses: docker/build-push-action@v6
         with:
           context: .
           # Explicitly setting the file name to avoid any case-sensitivity issues
-          file: ./Dockerfile 
+          file: Dockerfile 
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/my-node-app:latest
           
